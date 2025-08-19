@@ -45,11 +45,11 @@ BACKEND_ENV_VARS = \
       HTTP_PORT=8000 \
       RUN_MODE=localdev \
       COPY_REQUEST_BODY=true \
-      POSTGRES_DB=postgres://temporal:temporal@localhost:5432/temporal?sslmode=disable\
+      POSTGRES_DB=postgres://postgres:postgres@localhost:5432/postgres?sslmode=disable \
       LOGS_DIR=./logger/logs \
       SESSION_ON=true \
       TEMPORAL_ADDRESS=localhost:7233 \
-	  CONTAINER_REGISTRY_BASE=registry-1.docker.io
+	  CONTAINER_REGISTRY_BASE = registry-1.docker.io
 
 # Frontend environment variables
 FRONTEND_ENV_VARS = \
@@ -78,4 +78,3 @@ start-temporal-server:
 # Create a user with specified username, password and email (e.g. make create-user username=admin password=admin123 email=admin@example.com)
 create-user:
 	@curl -s -X POST http://localhost:8000/signup -H "Content-Type: application/json" -d "{\"username\":\"$(username)\",\"password\":\"$(password)\",\"email\":\"$(email)\"}" | grep -q "\"success\": true" && echo "User $(username) created successfully" || echo "Failed to create user $(username)"
-
