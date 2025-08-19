@@ -113,15 +113,7 @@ const Sources: React.FC = () => {
 					Create Source
 				</button>
 			</div>
-			<Loader
-				size="large"
-				tip="Loading sources..."
-			/>
-			<Spin
-				size="large"
-				tip="Loading sources..."
-			/>
-
+			
 			<p className="mb-6 text-gray-600">A list of all your sources</p>
 
 			<Tabs

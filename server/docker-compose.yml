@@ -27,6 +27,9 @@ services:
       - temporal-network
     expose:
       - 5432
+    ports:
+      - "5432:5432"
+  
     volumes:
       - temporal-postgresql-data:/var/lib/postgresql/data
   temporal:
