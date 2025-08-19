@@ -6,9 +6,9 @@ import { LinktreeLogo, Plus } from "@phosphor-icons/react"
 import { useAppStore } from "../../../store"
 import analyticsService from "../../../api/services/analyticsService"
 import { Entity } from "../../../types"
-import { sourceTabs } from "../../../utils/constants"
+import { EmptyStateType, sourceTabs } from "../../../utils/constants"
 import SourceTable from "../components/SourceTable"
-import SourceEmptyState from "../components/SourceEmptyState"
+import EmptyState from "../../common/components/EmptyState"
 import Loader from "../../common/components/Loader"
 
 const Sources: React.FC = () => {
@@ -113,7 +113,7 @@ const Sources: React.FC = () => {
 					Create Source
 				</button>
 			</div>
-			
+
 			<p className="mb-6 text-gray-600">A list of all your sources</p>
 
 			<Tabs
@@ -131,7 +131,10 @@ const Sources: React.FC = () => {
 							/>
 						</div>
 					) : tab.key === "active" && showEmpty ? (
-						<SourceEmptyState handleCreateSource={handleCreateSource} />
+						<EmptyState
+							type={EmptyStateType.SOURCE}
+							onButtonClick={handleCreateSource}
+						/>
 					) : filteredSources().length === 0 ? (
 						<Empty
 							image={Empty.PRESENTED_IMAGE_SIMPLE}

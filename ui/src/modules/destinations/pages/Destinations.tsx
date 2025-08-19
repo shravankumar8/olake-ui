@@ -2,12 +2,12 @@ import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { Path, Plus } from "@phosphor-icons/react"
 import { Button, Tabs, Empty, message } from "antd"
-
+import { destinationTabs, EmptyStateType } from "../../../utils/constants"
 import analyticsService from "../../../api/services/analyticsService"
 import { useAppStore } from "../../../store"
 import { Entity } from "../../../types"
-import { destinationTabs } from "../../../utils/constants"
-import DestinationEmptyState from "../components/DestinationEmptyState"
+import EmptyState from "../../common/components/EmptyState"
+
 import DestinationTable from "../components/DestinationTable"
 import Loader from "../../common/components/Loader"
 
@@ -129,8 +129,9 @@ const Destinations: React.FC = () => {
 							/>
 						</div>
 					) : tab.key === "active" && showEmpty ? (
-						<DestinationEmptyState
-							handleCreateDestination={handleCreateDestination}
+						<EmptyState
+							type={EmptyStateType.DESTINATION}
+							onButtonClick={handleCreateDestination}
 						/>
 					) : filteredDestinations().length === 0 ? (
 						<Empty
